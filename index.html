@@ -1,0 +1,333 @@
+<!DOCTYPE html>
+<html lang="sv">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Miksor Development</title>
+
+    <style>
+        /* ===== GLOBAL RESET ===== */
+        html, body {
+            margin: 0;
+            padding: 0;
+            width: 100%;
+            box-sizing: border-box;
+            font-family: Arial, sans-serif;
+            background-color: #0A1A3A;
+            color: white;
+        }
+
+        *, *::before, *::after {
+            box-sizing: inherit;
+        }
+
+        /* ===== LINKS ===== */
+        a {
+            color: #3AA6FF;
+            text-decoration: none;
+        }
+
+        a:hover {
+            color: #66C8FF;
+        }
+
+        a:active {
+            color: #99DDFF;
+        }
+
+        a:visited {
+            color: #3AA6FF;
+        }
+
+        /* ===== HEADER ===== */
+        header {
+            width: 100%;
+            background-color: #06234A;
+
+            position: fixed;
+            top: 0;
+            left: 0;
+            z-index: 999;
+        }
+
+        /* CENTRERAD HEADER-KOLUMN + LINJE */
+        .header-inner {
+            max-width: 900px;
+            margin: auto;
+            padding: 15px 35px;
+
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 20px;
+
+            border-bottom: 1px solid #3AA6FF; /* ← LINJEN ÄR NU RÄTT */
+        }
+
+        header img {
+            height: 40px;
+            width: auto;
+            flex-shrink: 1;
+            min-width: 0;
+        }
+
+        /* ===== NAVIGATION (DESKTOP) ===== */
+        nav {
+            display: flex;
+            gap: 25px;
+            flex: 1;
+            justify-content: flex-end;
+            min-width: 0;
+        }
+
+        nav a {
+            color: #3AA6FF;
+            font-weight: bold;
+            white-space: nowrap;
+        }
+
+        /* ===== HAMBURGER MENU ===== */
+        .hamburger {
+            display: none;
+            flex-direction: column;
+            gap: 5px;
+            cursor: pointer;
+            z-index: 1001;
+        }
+
+        .hamburger div {
+            width: 28px;
+            height: 3px;
+            background-color: #3AA6FF;
+        }
+
+        /* ===== OVERLAY ===== */
+        .overlay {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0,0,0,0.5);
+            z-index: 998;
+        }
+
+        .overlay.active {
+            display: block;
+        }
+
+        /* ===== MOBILE NAV ===== */
+        .mobile-nav {
+            display: flex;
+            flex-direction: column;
+            background-color: #06234A;
+            padding: 0 40px;
+
+            position: fixed;
+            top: 60px;
+            left: 0;
+            width: 100%;
+            z-index: 998;
+
+            max-height: 0;
+            overflow: hidden;
+            transition: max-height 0.3s ease;
+        }
+
+        .mobile-nav.active {
+            max-height: 300px;
+        }
+
+        .mobile-nav a {
+            padding: 15px 0;
+            color: #3AA6FF;
+            font-weight: bold;
+        }
+
+        /* ===== HERO ===== */
+        .hero {
+            text-align: center;
+            padding: 160px 20px 60px;
+        }
+
+        .hero h1 {
+            font-size: 48px;
+            margin-bottom: 10px;
+        }
+
+        .hero p {
+            font-size: 20px;
+            color: #D9D9D9;
+        }
+
+        /* ===== SECTIONS ===== */
+        .section {
+            padding: 80px 40px;
+            max-width: 900px;
+            margin: auto;
+        }
+
+        .section h2 {
+            color: #3AA6FF;
+            margin-bottom: 20px;
+        }
+
+        /* ===== APP GRID ===== */
+        .app-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+            gap: 30px;
+        }
+
+        .app-card {
+            background-color: #11224D;
+            padding: 20px;
+            border-radius: 10px;
+            text-align: center;
+        }
+
+        .app-card img {
+            width: 100px;
+            height: 100px;
+            margin-bottom: 15px;
+        }
+
+        /* ===== FOOTER ===== */
+        footer {
+            text-align: center;
+            padding: 30px;
+            margin-top: 40px;
+            border-top: 1px solid #3AA6FF;
+            color: #D9D9D9;
+        }
+
+        footer a {
+            color: #3AA6FF;
+            margin: 0 10px;
+        }
+
+        /* ===== MOBIL ===== */
+        @media (max-width: 700px) {
+
+            nav {
+                display: none;
+            }
+
+            .hamburger {
+                display: flex;
+            }
+
+            .header-inner {
+                padding: 10px 15px;
+            }
+
+            header img {
+                height: 32px;
+            }
+
+            .mobile-nav {
+                padding: 0 15px;
+            }
+
+            .hero {
+                padding-top: 140px;
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+<header>
+    <div class="header-inner">
+        <img src="headerlogga.png" alt="Miksor Development">
+
+        <nav>
+            <a href="#apps">Appar</a>
+            <a href="#about">Om oss</a>
+            <a href="#support">Support</a>
+        </nav>
+
+        <div class="hamburger" onclick="toggleMenu()">
+            <div></div>
+            <div></div>
+            <div></div>
+        </div>
+    </div>
+</header>
+
+<div class="overlay" id="overlay" onclick="toggleMenu()"></div>
+
+<div class="mobile-nav" id="mobileNav">
+    <a href="#apps" onclick="toggleMenu()">Appar</a>
+    <a href="#about" onclick="toggleMenu()">Om oss</a>
+    <a href="#support" onclick="toggleMenu()">Support</a>
+</div>
+
+<section class="hero">
+    <h1>Miksor Development</h1>
+    <p>Svensk indie‑studio som bygger smarta, kreativa och användarvänliga appar.</p>
+</section>
+
+<section id="apps" class="section">
+    <h2>Våra appar</h2>
+    <div class="app-grid">
+        <div class="app-card">
+            <img src="napp_mini.png" alt="App Icon">
+            <h3>NAPP</h3>
+            <p>Logga. Analysera. Fånga mer. En modern fiskedagbok med inbyggd barometer,
+                 statistik och ruttspårning – allt sparat privat på din enhet.</p>
+            <a href="#">Visa i Google Play</a>
+        </div>
+    </div>
+</section>
+
+<section id="about" class="section">
+    <h2>Om oss</h2>
+    <p>
+        Miksor Development är en svensk indie‑studio som fokuserar på kreativa, tekniska och användarvänliga lösningar.
+        Vi bygger appar med fokus på kvalitet, stabilitet och en tydlig användarupplevelse.
+    </p>
+</section>
+
+<section id="support" class="section">
+    <h2>Support</h2>
+    <p>
+        Har du frågor, funderingar eller stött på ett problem i någon av våra appar?
+        Vi hjälper dig gärna. Som liten indie‑studio strävar vi efter snabb och personlig
+        support, och vi uppskattar all feedback som hjälper oss att förbättra våra tjänster.
+    </p>
+
+    <p>
+        Du når oss enklast via e‑post:
+        <a href="mailto:miksor.dev@gmail.com?subject=Supportärende%20från%20Miksor%20Development
+                &body=Hej!%0A%0AJag%20behöver%20hjälp%20med...">miksor.dev@gmail.com</a>
+    </p>
+
+    <p>
+        Beskriv gärna vilket problem du upplever, vilken app det gäller och vilken enhet du använder.
+        Ju mer information du kan ge, desto snabbare kan vi hjälpa dig.
+    </p>
+</section>
+
+<footer>
+    <p>
+        <a href="integritetspolicy.html">Integritetspolicy</a>
+        <a href="villkor.html">Användarvillkor</a>
+    </p>
+    <p>&copy; 2026 Miksor Development</p>
+</footer>
+
+<script>
+function toggleMenu() {
+    const nav = document.getElementById("mobileNav");
+    const overlay = document.getElementById("overlay");
+
+    nav.classList.toggle("active");
+    overlay.classList.toggle("active");
+}
+</script>
+
+</body>
+</html>

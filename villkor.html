@@ -1,0 +1,300 @@
+<!DOCTYPE html>
+<html lang="sv">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Användarvillkor – Miksor Development</title>
+
+    <style>
+        /* ===== GLOBAL RESET ===== */
+        html, body {
+            margin: 0;
+            padding: 0;
+            width: 100%;
+            box-sizing: border-box;
+            font-family: Arial, sans-serif;
+            background-color: #0A1A3A;
+            color: white;
+        }
+
+        *, *::before, *::after {
+            box-sizing: inherit;
+        }
+
+        /* ===== HEADER ===== */
+        header {
+            width: 100%;
+            background-color: #06234A;
+            position: fixed;
+            top: 0;
+            left: 0;
+            z-index: 999;
+        }
+
+        /* CENTRERAD HEADER-KOLUMN + LINJE */
+        .header-inner {
+            max-width: 900px;
+            margin: auto;
+            padding: 15px 40px;
+
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 20px;
+
+            border-bottom: 1px solid #3AA6FF;
+        }
+
+        header img {
+            height: 50px;
+            width: auto;
+        }
+
+        /* ===== NAVIGATION (DESKTOP) ===== */
+        nav {
+            display: flex;
+            gap: 25px;
+            justify-content: flex-end;
+        }
+
+        nav a {
+            color: #3AA6FF;
+            font-weight: bold;
+            white-space: nowrap;
+            text-decoration: none;
+        }
+
+        /* ===== HAMBURGER MENU ===== */
+        .hamburger {
+            display: none;
+            flex-direction: column;
+            gap: 5px;
+            cursor: pointer;
+            z-index: 1001;
+        }
+
+        .hamburger div {
+            width: 28px;
+            height: 3px;
+            background-color: #3AA6FF;
+        }
+
+        /* ===== OVERLAY ===== */
+        .overlay {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0,0,0,0.5);
+            z-index: 998;
+        }
+
+        .overlay.active {
+            display: block;
+        }
+
+        /* ===== MOBILE NAV ===== */
+        .mobile-nav {
+            display: flex;
+            flex-direction: column;
+            background-color: #06234A;
+            padding: 0 40px;
+
+            position: fixed;
+            top: 60px;
+            left: 0;
+            width: 100%;
+            z-index: 998;
+
+            max-height: 0;
+            overflow: hidden;
+            transition: max-height 0.3s ease;
+        }
+
+        .mobile-nav.active {
+            max-height: 300px;
+        }
+
+        .mobile-nav a {
+            padding: 15px 0;
+            color: #3AA6FF;
+            font-weight: bold;
+            text-decoration: none;
+        }
+
+        /* ===== CONTENT ===== */
+        .content {
+            padding: 160px 40px 80px 40px;
+            max-width: 900px;
+            margin: auto;
+        }
+
+        h1, h2, h3 {
+            color: #3AA6FF;
+        }
+
+        p, ul, li {
+            color: #D9D9D9;
+            line-height: 1.6;
+        }
+
+        /* ===== FOOTER ===== */
+        footer {
+            text-align: center;
+            padding: 30px;
+            margin-top: 40px;
+            border-top: 1px solid #3AA6FF;
+            color: #D9D9D9;
+        }
+
+        footer a {
+            color: #3AA6FF;
+            text-decoration: none;
+            margin: 0 10px;
+        }
+
+        /* ===== MOBIL ===== */
+        @media (max-width: 700px) {
+
+            nav {
+                display: none;
+            }
+
+            .hamburger {
+                display: flex;
+            }
+
+            .header-inner {
+                padding: 10px 15px;
+            }
+
+            header img {
+                height: 32px;
+            }
+
+            .mobile-nav {
+                padding: 0 15px;
+            }
+
+            .content {
+                padding-top: 140px;
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+<header>
+    <div class="header-inner">
+        <img src="headerlogga.png" alt="Miksor Development">
+
+        <nav>
+            <a href="index.html">Hem</a>
+            <a href="index.html#apps">Appar</a>
+            <a href="index.html#support">Support</a>
+        </nav>
+
+        <div class="hamburger" onclick="toggleMenu()">
+            <div></div>
+            <div></div>
+            <div></div>
+        </div>
+    </div>
+</header>
+
+<div class="overlay" id="overlay" onclick="toggleMenu()"></div>
+
+<div class="mobile-nav" id="mobileNav">
+    <a href="index.html" onclick="toggleMenu()">Hem</a>
+    <a href="index.html#apps" onclick="toggleMenu()">Appar</a>
+    <a href="index.html#support" onclick="toggleMenu()">Support</a>
+</div>
+
+<div class="content">
+    <h1>Användarvillkor – Miksor Development</h1>
+    <p><strong>Senast uppdaterad: 2026‑03‑19</strong></p>
+
+    <p>
+        Dessa användarvillkor (“villkor”, “Terms of Service”) reglerar användningen av alla appar och tjänster som tillhandahålls av
+        Miksor Development (“vi”, “oss”, “vår”). Genom att använda våra appar godkänner du dessa villkor.
+    </p>
+
+    <h2>1. Acceptans av villkor</h2>
+    <p>
+        Genom att installera eller använda någon av våra appar accepterar du dessa villkor. Om du inte godkänner villkoren ska du
+        avinstallera appen och sluta använda våra tjänster.
+    </p>
+
+    <h2>2. Användning av våra appar</h2>
+    <p>Du förbinder dig att:</p>
+    <ul>
+        <li>inte missbruka appen eller använda den i olagligt syfte</li>
+        <li>inte försöka manipulera, hacka eller störa appens funktioner</li>
+        <li>inte kopiera, distribuera eller modifiera appens innehåll utan tillstånd</li>
+    </ul>
+
+    <h2>3. Immateriella rättigheter</h2>
+    <p>
+        Alla rättigheter till appar, grafik, kod, namn och innehåll tillhör Miksor Development. Du får inte använda vårt material
+        utan skriftligt tillstånd.
+    </p>
+
+    <h2>4. Ansvarsbegränsning</h2>
+    <p>
+        Våra appar tillhandahålls i befintligt skick (“as is”) utan garantier av något slag. Vi ansvarar inte för:
+    </p>
+    <ul>
+        <li>förlust av data</li>
+        <li>skador orsakade av användning eller oförmåga att använda appen</li>
+        <li>problem som uppstår på grund av tredjepartstjänster</li>
+        <li>eventuella fel, buggar eller driftstörningar</li>
+    </ul>
+
+    <h2>5. Tredjepartstjänster</h2>
+    <p>
+        Vissa appar kan använda tjänster som Google Play Billing, Google Drive API eller Firebase. Vi ansvarar inte för dessa
+        tjänsters funktion eller eventuella problem som uppstår där.
+    </p>
+
+    <h2>6. Ändringar av villkor</h2>
+    <p>
+        Vi kan uppdatera dessa villkor när som helst. Den senaste versionen kommer alltid att finnas tillgänglig på vår webbplats.
+        Fortsatt användning av våra appar innebär att du accepterar de uppdaterade villkoren.
+    </p>
+
+    <h2>7. Uppsägning av användning</h2>
+    <p>
+        Du kan när som helst sluta använda våra appar genom att avinstallera dem. Vi kan blockera eller avsluta åtkomst till våra
+        tjänster om du bryter mot dessa villkor.
+    </p>
+
+    <h2>8. Kontakt</h2>
+    <p>
+        <strong>Miksor Development</strong><br>
+        E‑post: <strong>miksor.dev@gmail.com</strong>
+    </p>
+</div>
+
+<footer>
+    <p>
+        <a href="integritetspolicy.html">Integritetspolicy</a>
+        <a href="villkor.html">Användarvillkor</a>
+    </p>
+    <p>&copy; 2026 Miksor Development</p>
+</footer>
+
+<script>
+function toggleMenu() {
+    const nav = document.getElementById("mobileNav");
+    const overlay = document.getElementById("overlay");
+
+    nav.classList.toggle("active");
+    overlay.classList.toggle("active");
+}
+</script>
+
+</body>
+</html>
