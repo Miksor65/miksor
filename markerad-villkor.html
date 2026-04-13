@@ -1,0 +1,304 @@
+<!DOCTYPE html>
+<html lang="sv">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Användarvillkor – Markerad</title>
+
+    <style>
+        /* ===== GLOBAL RESET ===== */
+        html, body {
+            margin: 0;
+            padding: 0;
+            width: 100%;
+            box-sizing: border-box;
+            font-family: Arial, sans-serif;
+            background-color: #0A1A3A;
+            color: white;
+        
+        }
+        /* ===== LINKS ===== */
+        a {
+            color: #3AA6FF;
+            text-decoration: none;
+        }
+
+        a:hover {
+            color: #66C8FF;
+        }
+
+        a:active {
+            color: #99DDFF;
+        }
+
+        a:visited {
+            color: #3AA6FF;
+        }
+        *, *::before, *::after {
+            box-sizing: inherit;
+        }
+
+        /* ===== HEADER ===== */
+        header {
+            width: 100%;
+            background-color: #06234A;
+            position: fixed;
+            top: 0;
+            left: 0;
+            z-index: 999;
+        }
+
+        /* CENTRERAD HEADER-KOLUMN + LINJE */
+        .header-inner {
+            max-width: 900px;
+            margin: auto;
+            padding: 15px 40px;
+
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 20px;
+
+            border-bottom: 1px solid #3AA6FF;
+        }
+
+        header img {
+            height: 50px;
+            width: auto;
+        }
+
+        /* ===== NAVIGATION (DESKTOP) ===== */
+        nav {
+            display: flex;
+            gap: 25px;
+            justify-content: flex-end;
+        }
+
+        nav a {
+            color: #3AA6FF;
+            font-weight: bold;
+            white-space: nowrap;
+            text-decoration: none;
+        }
+
+        /* ===== HAMBURGER MENU ===== */
+        .hamburger {
+            display: none;
+            flex-direction: column;
+            gap: 5px;
+            cursor: pointer;
+            z-index: 1001;
+        }
+
+        .hamburger div {
+            width: 28px;
+            height: 3px;
+            background-color: #3AA6FF;
+        }
+
+        /* ===== OVERLAY ===== */
+        .overlay {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0,0,0,0.5);
+            z-index: 998;
+        }
+
+        .overlay.active {
+            display: block;
+        }
+
+        /* ===== MOBILE NAV ===== */
+        .mobile-nav {
+            display: flex;
+            flex-direction: column;
+            background-color: #06234A;
+            padding: 0 40px;
+
+            position: fixed;
+            top: 60px;
+            left: 0;
+            width: 100%;
+            z-index: 998;
+
+            max-height: 0;
+            overflow: hidden;
+            transition: max-height 0.3s ease;
+        }
+
+        .mobile-nav.active {
+            max-height: 300px;
+        }
+
+        .mobile-nav a {
+            padding: 15px 0;
+            color: #3AA6FF;
+            font-weight: bold;
+            text-decoration: none;
+        }
+
+        /* ===== CONTENT ===== */
+        .content {
+            padding: 160px 40px 80px 40px;
+            max-width: 900px;
+            margin: auto;
+        }
+
+        h1, h2, h3 {
+            color: #3AA6FF;
+        }
+
+        p, ul, li {
+            color: #D9D9D9;
+            line-height: 1.6;
+        }
+
+        /* ===== FOOTER ===== */
+        footer {
+            text-align: center;
+            padding: 30px;
+            margin-top: 40px;
+            border-top: 1px solid #3AA6FF;
+            color: #D9D9D9;
+        }
+
+        footer a {
+            color: #3AA6FF;
+            text-decoration: none;
+            margin: 0 10px;
+        }
+
+        /* ===== MOBIL ===== */
+        @media (max-width: 700px) {
+
+            nav {
+                display: none;
+            }
+
+            .hamburger {
+                display: flex;
+            }
+
+            .header-inner {
+                padding: 10px 15px;
+            }
+
+            header img {
+                height: 32px;
+            }
+
+            .mobile-nav {
+                padding: 0 15px;
+            }
+
+            .content {
+                padding-top: 80px;
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+<header>
+    <div class="header-inner">
+        <img src="headerlogga.png" alt="Miksor Development">
+
+        <nav>
+            <a href="index.html">Hem</a>
+            <a href="index.html#apps">Appar</a>
+            <a href="index.html#support">Support</a>
+        </nav>
+
+        <div class="hamburger" onclick="toggleMenu()">
+            <div></div>
+            <div></div>
+            <div></div>
+        </div>
+    </div>
+</header>
+
+<div class="overlay" id="overlay" onclick="toggleMenu()"></div>
+
+<div class="mobile-nav" id="mobileNav">
+    <a href="index.html" onclick="toggleMenu()">Hem</a>
+    <a href="index.html#apps" onclick="toggleMenu()">Appar</a>
+    <a href="index.html#support" onclick="toggleMenu()">Support</a>
+</div>
+
+<div class="content">
+    <h1>Användarvillkor – Markerad</h1>
+    <p><strong>Senast uppdaterad: 13 april 2026</strong></p>
+
+    <p>Dessa användarvillkor ("villkor", "Terms of Service") reglerar användningen av appen Markerad som tillhandahålls av Miksor Development ("vi", "oss", "vår"). Genom att använda appen godkänner du dessa villkor.</p>
+
+    <h2>1. Acceptans av villkor</h2>
+    <p>Genom att installera eller använda Markerad accepterar du dessa villkor. Om du inte godkänner villkoren ska du avinstallera appen och sluta använda våra tjänster.</p>
+
+    <h2>2. Användning av appen</h2>
+    <p>Du förbinder dig att använda appen på ett ansvarsfullt sätt. Du får inte:</p>
+    <ul>
+        <li>Använda appen för olagliga ändamål.</li>
+        <li>Försöka manipulera, dekompilera eller störa appens funktioner eller källkod.</li>
+        <li>Kopiera eller distribuera appens grafik eller unika funktioner utan skriftligt tillstånd.</li>
+    </ul>
+
+    <h2>3. Immateriella rättigheter</h2>
+    <p>Alla rättigheter till appen, dess namn (Markerad), källkod, grafik och logotyper tillhör Miksor Development.</p>
+
+    <h2>4. Särskild ansvarsfriskrivning för navigering</h2>
+    <p>Markerad är ett hjälpmedel för att markera platser, inte ett certifierat navigationsinstrument.</p>
+    <ul>
+        <li><strong>Eget ansvar:</strong> Du ansvarar själv för din säkerhet i naturen. Lita aldrig enbart på appen för att hitta tillbaka.</li>
+        <li><strong>Batteri och utrustning:</strong> Vi ansvarar inte för konsekvenser av att din mobila enhet får slut på batteri, tappar GPS-täckning eller slutar fungera under användning.</li>
+        <li><strong>Kartan:</strong> Kartmaterialet tillhandahålls via OpenStreetMap. Vi garanterar inte att kartan alltid är 100% korrekt eller uppdaterad gällande stigar, terräng eller hinder.</li>
+    </ul>
+
+    <h2>5. Ansvarsbegränsning</h2>
+    <p>Appen tillhandahålls i befintligt skick ("as is"). Miksor Development ansvarar inte för:</p>
+    <ul>
+        <li><strong>Förlust av data:</strong> Eftersom all data lagras lokalt på din enhet är det ditt ansvar att göra säkerhetskopior (t.ex. via GPX-export). Vi kan inte återställa data som gått förlorad vid t.ex. en trasig telefon eller radering av appen.</li>
+        <li><strong>Skador:</strong> Vi ansvarar inte för direkta eller indirekta skador som uppstår i samband med användning av appen.</li>
+    </ul>
+
+    <h2>6. Tredjepartstjänster</h2>
+    <p>Appen använder tjänster från tredje part, såsom OpenStreetMap för kartvyer och Androids systemtjänster för positionering. Vi ansvarar inte för dessa externa tjänsters tillgänglighet eller funktion.</p>
+
+    <h2>7. Ändringar av villkor</h2>
+    <p>Vi kan uppdatera dessa villkor när som helst. Den senaste versionen kommer alltid att finnas tillgänglig via vår officiella webbplats (miksor.se). Fortsatt användning av appen innebär att du accepterar de nya villkoren.</p>
+
+    <h2>8. Uppsägning</h2>
+    <p>Du kan när som helst avsluta din användning genom att avinstallera appen. Då raderas även all din lokalt sparade data i appen.</p>
+
+    <h2>9. Kontakt</h2>
+    <p>
+        <strong>Miksor Development</strong><br>
+        E‑post: <a href="mailto:miksor.dev@gmail.com?subject=Supportärende%20från%20Miksor%20Development
+                &body=Hej!%0A%0AJag%20behöver%20hjälp%20med...">miksor.dev@gmail.com</a>
+    </p>
+</div>
+
+<footer>
+    <p>
+        <a href="integritetspolicy.html">Integritetspolicy</a>
+        <a href="villkor.html">Användarvillkor</a>
+    </p>
+    <p>&copy; 2026 Miksor Development</p>
+</footer>
+
+<script>
+function toggleMenu() {
+    const nav = document.getElementById("mobileNav");
+    const overlay = document.getElementById("overlay");
+
+    nav.classList.toggle("active");
+    overlay.classList.toggle("active");
+}
+</script>
+
+</body>
+</html>
