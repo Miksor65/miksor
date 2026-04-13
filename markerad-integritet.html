@@ -1,0 +1,322 @@
+<!DOCTYPE html>
+<html lang="sv">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Integritetspolicy – Markerad</title>
+
+    <style>
+        /* ===== GLOBAL RESET ===== */
+        html, body {
+            margin: 0;
+            padding: 0;
+            width: 100%;
+            box-sizing: border-box;
+            font-family: Arial, sans-serif;
+            background-color: #0A1A3A;
+            color: white;
+        }
+
+        *, *::before, *::after {
+            box-sizing: inherit;
+        }
+
+        /* ===== LINKS ===== */
+        a {
+            color: #3AA6FF;
+            text-decoration: none;
+        }
+
+        a:hover {
+            color: #66C8FF;
+        }
+
+        a:active {
+            color: #99DDFF;
+        }
+
+        a:visited {
+            color: #3AA6FF;
+        }
+
+        /* ===== HEADER ===== */
+        header {
+            width: 100%;
+            background-color: #06234A;
+            position: fixed;
+            top: 0;
+            left: 0;
+            z-index: 999;
+        }
+
+        /* CENTRERAD HEADER-KOLUMN + LINJE */
+        .header-inner {
+            max-width: 900px;
+            margin: auto;
+            padding: 15px 40px;
+
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 20px;
+
+            border-bottom: 1px solid #3AA6FF;
+        }
+
+        header img {
+            height: 50px;
+            width: auto;
+        }
+
+        /* ===== NAVIGATION (DESKTOP) ===== */
+        nav {
+            display: flex;
+            gap: 25px;
+            justify-content: flex-end;
+        }
+
+        nav a {
+            color: #3AA6FF;
+            font-weight: bold;
+            white-space: nowrap;
+            text-decoration: none;
+        }
+
+        /* ===== HAMBURGER MENU ===== */
+        .hamburger {
+            display: none;
+            flex-direction: column;
+            gap: 5px;
+            cursor: pointer;
+            z-index: 1001;
+        }
+
+        .hamburger div {
+            width: 28px;
+            height: 3px;
+            background-color: #3AA6FF;
+        }
+
+        /* ===== OVERLAY ===== */
+        .overlay {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0,0,0,0.5);
+            z-index: 998;
+        }
+
+        .overlay.active {
+            display: block;
+        }
+
+        /* ===== MOBILE NAV ===== */
+        .mobile-nav {
+            display: flex;
+            flex-direction: column;
+            background-color: #06234A;
+            padding: 0 40px;
+
+            position: fixed;
+            top: 60px;
+            left: 0;
+            width: 100%;
+            z-index: 998;
+
+            max-height: 0;
+            overflow: hidden;
+            transition: max-height 0.3s ease;
+        }
+
+        .mobile-nav.active {
+            max-height: 300px;
+        }
+
+        .mobile-nav a {
+            padding: 15px 0;
+            color: #3AA6FF;
+            font-weight: bold;
+            text-decoration: none;
+        }
+
+        /* ===== CONTENT ===== */
+        .content {
+            padding: 160px 40px 80px 40px;
+            max-width: 900px;
+            margin: auto;
+        }
+
+        h1, h2, h3 {
+            color: #3AA6FF;
+        }
+
+        p, ul {
+            color: #D9D9D9;
+            line-height: 1.6;
+        }
+
+        /* ===== FOOTER ===== */
+        footer {
+            text-align: center;
+            padding: 30px;
+            margin-top: 40px;
+            border-top: 1px solid #3AA6FF;
+            color: #D9D9D9;
+        }
+
+        footer a {
+            color: #3AA6FF;
+            text-decoration: none;
+            margin: 0 10px;
+        }
+
+        /* ===== MOBIL ===== */
+        @media (max-width: 700px) {
+
+            nav {
+                display: none;
+            }
+
+            .hamburger {
+                display: flex;
+            }
+
+            .header-inner {
+                padding: 10px 15px;
+            }
+
+            header img {
+                height: 32px;
+            }
+
+            .mobile-nav {
+                padding: 0 15px;
+            }
+
+            .content {
+                padding-top: 80px;
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+<header>
+    <div class="header-inner">
+        <img src="headerlogga.png" alt="Miksor Development">
+
+        <nav>
+            <a href="index.html">Hem</a>
+            <a href="index.html#apps">Appar</a>
+            <a href="index.html#support">Support</a>
+        </nav>
+
+        <div class="hamburger" onclick="toggleMenu()">
+            <div></div>
+            <div></div>
+            <div></div>
+        </div>
+    </div>
+</header>
+
+<div class="overlay" id="overlay" onclick="toggleMenu()"></div>
+
+<div class="mobile-nav" id="mobileNav">
+    <a href="index.html" onclick="toggleMenu()">Hem</a>
+    <a href="index.html#apps" onclick="toggleMenu()">Appar</a>
+    <a href="index.html#support" onclick="toggleMenu()">Support</a>
+</div>
+
+<div class="content">
+    <h1>Integritetspolicy – Markerad</h1>
+    <p><strong>Senast uppdaterad: 13 april 2026</strong></p>
+
+    <p>Miksor Development ("vi", "oss", "vår") värnar om din integritet. Denna integritetspolicy beskriver hur vi samlar in, använder och skyddar information i appen Markerad. Appen är byggd för att vara privat och all data lagras lokalt på din enhet.</p>
+
+    <h2>1. Information vi samlar in</h2>
+    <p>Vår app samlar in följande typer av information för att fungera korrekt:</p>
+
+    <h2>1.1. Information du själv tillhandahåller</h2>
+    <ul>
+        <li><strong>Sparade platser:</strong> Koordinater, namn, anteckningar och bärkategorier som du själv väljer att spara.</li>
+        <li><strong>Bilder:</strong> Om du använder kameran i appen sparas bilderna lokalt på din enhet kopplat till dina sparade platser.</li>
+        <li><strong>Namn för delning:</strong> Det namn du anger när du väljer att dela din position via SMS.</li>
+    </ul>
+
+    <h2>1.2. Automatisk data och sensorer</h2>
+    <p>För att kartan och navigeringen ska fungera använder appen:</p>
+    <ul>
+        <li><strong>Platsinformation (GPS):</strong> Appen samlar in exakta platsdata för att visa din position på kartan, låta dig spara platser och navigera tillbaka till din parkering.</li>
+        <li><strong>Kompass/Sensorer:</strong> Appen använder enhetens orienteringssensorer för att rotera kartan och navigeringspilen i rätt riktning.</li>
+    </ul>
+
+    <h2>1.3. Ingen bakgrundsspårning</h2>
+    <p>Markerad samlar inte in platsdata när appen är stängd. Spårning sker endast när du aktivt använder appen.</p>
+
+    <h2>2. Hur vi använder informationen</h2>
+    <p>Vi använder informationen uteslutande för att:</p>
+    <ul>
+        <li>Tillhandahålla appens kärnfunktioner (karta, navigering och sparande av platser).</li>
+        <li>Möjliggöra manuell delning av din position via SMS till mottagare du själv väljer.</li>
+        <li>Visa avståndet mellan dig och dina sparade platser.</li>
+    </ul>
+    <p>Vi säljer aldrig din data till tredje part och vi har ingen åtkomst till dina sparade platser.</p>
+
+    <h2>3. Lagring av data</h2>
+    <ul>
+        <li><strong>Lokal lagring:</strong> All din data (platser, anteckningar och inställningar) lagras i en krypterad databas lokalt på din enhet.</li>
+        <li><strong>Ingen molnlagring:</strong> Vi använder inga externa molntjänster eller servrar för att lagra dina hemliga ställen. Vid avinstallation raderas all data permanent från enheten.</li>
+    </ul>
+
+    <h2>4. Tredjepartstjänster</h2>
+    <ul>
+        <li><strong>OpenStreetMap:</strong> Appen använder OpenStreetMap-tiles för att visa kartor. Detta sker genom anonyma anrop för att hämta kartbilder.</li>
+        <li><strong>Google Play Services:</strong> Används för grundläggande lokaliseringstjänster på Android-enheter.</li>
+    </ul>
+
+    <h2>5. Barns integritet</h2>
+    <p>Våra appar är inte avsedda för barn under 13 år, även om appen i sig inte innehåller något olämpligt material eller datainsamling som riktar sig mot barn.</p>
+
+    <h2>6. Dina rättigheter</h2>
+    <p>Du har full kontroll över din data:</p>
+    <ul>
+        <li><strong>Radera data:</strong> Du kan när som helst radera enskilda platser eller rensa all data direkt i appens inställningar.</li>
+        <li><strong>Återkalla åtkomst:</strong> Du kan när som helst stänga av platsåtkomst eller kameratillstånd i Androids systeminställningar.</li>
+        <li><strong>Export:</strong> Du kan använda appens GPX-export för att ta ut din data.</li>
+    </ul>
+
+    <h2>7. Ändringar i denna policy</h2>
+    <p>Vi kan uppdatera denna policy vid behov, till exempel om vi lägger till nya funktioner.</p>
+
+    <h2>8. Kontakt</h2>
+    <p>
+        <strong>Miksor Development</strong><br>
+        E-post: <a href="mailto:miksor.dev@gmail.com?subject=Supportärende%20från%20Miksor%20Development
+                &body=Hej!%0A%0AJag%20behöver%20hjälp%20med...">miksor.dev@gmail.com</a>
+    </p>
+</div>
+
+<footer>
+    <p>
+        <a href="integritetspolicy.html">Integritetspolicy</a>
+        <a href="villkor.html">Användarvillkor</a>
+    </p>
+    <p>&copy; 2026 Miksor Development</p>
+</footer>
+
+<script>
+function toggleMenu() {
+    const nav = document.getElementById("mobileNav");
+    const overlay = document.getElementById("overlay");
+
+    nav.classList.toggle("active");
+    overlay.classList.toggle("active");
+}
+</script>
+
+</body>
+</html>
